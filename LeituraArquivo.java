@@ -14,12 +14,12 @@ public class LeituraArquivo {
 	
 	private final int AUX = 10; //variável auxiliar para quantidade de programas
 
-	private int quantum;
+	private int quantum; //variável auxiliar quantum
 	private List<Processo> processos = new ArrayList<Processo>();
 
 	public LeituraArquivo() throws FileNotFoundException {
-		lerQuantum();
-		lerProgramas();
+		lerQuantum(); 	//faz leitura do quantum
+		lerProgramas(); //faz leitura dos programas
 	}
 
 	private void lerQuantum() {
@@ -34,7 +34,7 @@ public class LeituraArquivo {
 		
 	}
 
-	private void lerProgramas() {
+	private void lerProgramas() { //método lê todos os programas, cria o BCP e adiciona na tebela de processos
 		List<String> listaAux = new ArrayList<String>();
 		FileReader file;
 		Scanner sc;
@@ -54,7 +54,7 @@ public class LeituraArquivo {
 				}
 			
 				
-				processos.add(new Processo(Estado.PRONTO, listaAux, listaAux.get(0), 0, 0));
+				processos.add(new Processo(Estado.PRONTO, listaAux, listaAux.get(0)));
 				TabelaDeProcessos.prontos.add(processos.get(i-1).getBcp());
 				
 				listaAux.clear();

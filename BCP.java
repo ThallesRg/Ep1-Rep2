@@ -4,16 +4,16 @@ import ep1.processo.Processo;
 
 public class BCP {
 	
-	private String nome;
-	private int registX;
-	private int registY;
+	private String nome; // variavel que armazena o nome do processo
+	private int registX; // variavel que corresponde ao registrador x
+	private int registY; // vatiavel que corresponde ao registrador y
 	private int contadorPrograma = 1; //ignorando primeira linha (nome)
 	
-	private int sairBloquados = 0;
+	private int sairBloquados = 0; // variavel axiliar no controle de saida do BCP na Tabela de Processos
 	
 	Processo processo;
 	
-	public BCP(Processo processo) {
+	public BCP(Processo processo) { // Contrutor com referencia ao processo criado
 		this.processo = processo;
 	}
 
