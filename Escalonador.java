@@ -10,7 +10,10 @@ import ep1.processo.Estado;
 public class Escalonador {
 
 	static int processosRodando = 0;
-
+	
+	static double qtdTrocas = 0;
+	static double qtdInstrucoes = 0;
+	
 	public static void main(String[] args) throws FileNotFoundException {
 
 		LeituraArquivo arq = new LeituraArquivo();
@@ -46,14 +49,17 @@ public class Escalonador {
 							incrementaContador(ContadorPrograma);
 							TabelaDeProcessos.adicionaBloqueados(bcpAtual);
 							// TabelaDeProcessos.prontos.remove(bcpAtual);
+							qtdInstrucoes++;
 							break;
 
 						} else if (listaInstrucoes.get(ContadorPrograma).contains("X=")) {
 							bcpAtual.setRegistX(Integer.parseInt(listaInstrucoes.get(ContadorPrograma).substring(2)));
+							qtdInstrucoes++;
 							incrementaContador(ContadorPrograma);
 						} else if (listaInstrucoes.get(ContadorPrograma).contains("Y=")) {
 			
 							bcpAtual.setRegistY(Integer.parseInt(listaInstrucoes.get(ContadorPrograma).substring(2)));
+							qtdInstrucoes++;
 							incrementaContador(ContadorPrograma);
 
 						} else if (listaInstrucoes.get(ContadorPrograma).contains("SAIDA")) {
@@ -61,8 +67,10 @@ public class Escalonador {
 							incrementaContador(ContadorPrograma);
 							TabelaDeProcessos.prontos.remove(bcpAtual);
 							bcpAtual.getProcesso().setEstado(Estado.FINALIZADO);
+							qtdInstrucoes++;
 							break;
 						} else if (listaInstrucoes.get(ContadorPrograma).contains("COM")) {
+							qtdInstrucoes++;
 							incrementaContador(ContadorPrograma);
 						}
 
@@ -71,6 +79,8 @@ public class Escalonador {
 						break;
 					}
 				}
+				
+				qtdTrocas++;
 				
 				
 
@@ -84,6 +94,10 @@ public class Escalonador {
 			
 			incrementaProcessosRodando();
 		}
+		
+		System.out.println("Media de trocas: " + qtdTrocas/quantum);
+		System.out.println("Media de instruoes: " + qtdInstrucoes/10);
+		System.out.println("Quantum: " + quantum);
 		
 
 	}
