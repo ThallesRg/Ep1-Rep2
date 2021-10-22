@@ -17,8 +17,8 @@ public class TabelaDeProcessos {
 	
 	public static void adicionaBloqueados(BCP bcp) {
 		bcp.setSairBloquados(2);
-		prontos.remove(bcp);
 		bloqueados.add(bcp);
+		prontos.remove(bcp);
 		bcp.getProcesso().setEstado(Estado.BLOQUEADO);
 	}
 	
